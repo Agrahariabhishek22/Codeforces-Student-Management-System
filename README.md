@@ -39,7 +39,6 @@ This platform provides a centralized interface for tracking and analyzing studen
 
 ### External APIs:
 - Codeforces Public APIs
-- 
 ---
 
 ## Features
