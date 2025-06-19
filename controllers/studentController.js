@@ -6,25 +6,32 @@ const syncStudentFromCodeforces = require('../services/codeforcesService');
 // 1. Create a new student
 const createStudent = async (req, res) => {
   try {
-    console.log("inside student controller ");
+    // console.log("inside student controller ");
     
     const { name, email, phone, cfHandle } = req.body;
-
+    if (!name || !email || !phone || !cfHandle) {
+      return res.status(400).json({ success: false, message: 'All fields are required' });
+    }
+    const existingStudent = await Student.find({ cfHandle });
+    if (existingStudent.length > 0) {
+      return res.status(400).json({ success: false, message: 'Student with this Codeforces handle already exists' });
+    }
     const student = await Student.create({
       name,
       email,
       phone,
       cfHandle
     });
-    console.log(name);
-    console.log("after save inside student controller ");
+    // console.log(name);
+    // console.log("after save inside student controller ");
 
     
     await syncStudentFromCodeforces(student);
-    console.log("after sync inside student controller ");
+    // console.log("after sync inside student controller ");
 
 
-    res.status(201).json({ success: true, student });
+    res.status(201).json({ success: true,
+      message:"Student created and synced", student });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }
@@ -35,24 +42,24 @@ const createStudent = async (req, res) => {
 const getAllStudents = async (req, res) => {
   try {
     const students = await Student.find().sort({ createdAt: -1 });
-    res.status(200).json({ success: true, students });
+    res.status(200).json({ success: true,message:"All Student fetched successfully", students });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }
 };
 
 
-// 3. Get one student by ID
-const getStudentById = async (req, res) => {
-  try {
-    const student = await Student.findById(req.params.id);
-    if (!student) return res.status(404).json({ success: false, message: 'Student not found' });
+// // 3. Get one student by ID
+// const getStudentById = async (req, res) => {
+//   try {
+//     const student = await Student.findById(req.params.id);
+//     if (!student) return res.status(404).json({ success: false, message: 'Student not found' });
 
-    res.status(200).json({ success: true, student });
-  } catch (err) {
-    res.status(500).json({ success: false, message: err.message });
-  }
-};
+//     res.status(200).json({ success: true, student });
+//   } catch (err) {
+//     res.status(500).json({ success: false, message: err.message });
+//   }
+// };
 
 
 // 4. Update student details
@@ -84,6 +91,8 @@ const deleteStudent = async (req, res) => {
 // 6. Update CF handle & trigger real-time sync
 const updateCFHandle = async (req, res) => {
   try {
+    // console.log("inside updateCFHandle controller");
+    
     const { cfHandle } = req.body;
     const student = await Student.findById(req.params.id);
     const cf_handle=student.cfHandle;
@@ -107,7 +116,7 @@ const updateCFHandle = async (req, res) => {
 module.exports = {
   createStudent,
   getAllStudents,
-  getStudentById,
+  // getStudentById,
   updateStudent,
   deleteStudent,
   updateCFHandle

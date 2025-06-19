@@ -13,7 +13,7 @@ const getContestHistory = async (req, res) => {
   try {
     const { id } = req.params; // studentId
     const days = parseInt(req.query.days) || 365;
-    console.log(id,days);
+    // console.log(id,days);
     
     const fromDate = getDateDaysAgo(days);
 
@@ -33,7 +33,9 @@ const getContestHistory = async (req, res) => {
       ratingGraph
     };
 
-    res.status(200).json({ success: true, data: response });
+    res.status(200).json({ success: true,
+      message: "Contest history fetched successfully",
+       data: response });
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
   }
