@@ -4,6 +4,9 @@ import Profile from './pages/Profile'
 import Layout from './components/Layout'
 import StudentProfile from './components/StudentProfile'
 
+
+
+
 export default function App() {
   return(
     <Router>
