@@ -16,8 +16,6 @@ This platform provides a centralized interface for tracking and analyzing studen
 ## Live Demo & Links
 
 - **Demo Video**: [Uploaded on Google Drive](https://drive.google.com/file/d/1htonImabnq5Fungbq2-RMECoMUSLoW7M/view?usp=drivesdk)  
-- **Frontend Repository**: [GitHub - Frontend](https://github.com/Agrahariabhishek22/Codeforces-Student-Management-System-Frontend)  
-- **Backend Repository**: [GitHub - Backend](https://github.com/Agrahariabhishek22/Codeforces-Student-Management-System-Backend)  
 - **Postman API Docs**: [View Postman Documentation](https://documenter.getpostman.com/view/36767454/2sB2x9kr31)
 
 ---
