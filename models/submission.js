@@ -7,18 +7,18 @@ const submissionSchema = new mongoose.Schema({
     required: true
   },
   problemId: {
-    type: String, // like "1234/A"
+    type: String,
     required: true
   },
   name: {
-    type: String, // "Team Name"
+    type: String,
     required: true
   },
   rating: {
     type: Number
   },
   verdict: {
-    type: String // OK, WRONG_ANSWER, etc.
+    type: String
   },
   timestamp: {
     type: Date,

@@ -2,7 +2,6 @@ const axios = require('axios');
 const Student = require('../models/student');
 const Submission = require('../models/submission');
 const Contest = require('../models/contest');
-// require('./')
 const toDate=(seconds)=>new Date(seconds*1000);
 
 // Main function to sync data for a student
@@ -53,7 +52,7 @@ const syncStudentFromCodeforces = async (student) => {
     console.log(submissions);
     
     const submissionDocs = submissions
-      .filter(s => s.problem && s.verdict) // sanity check
+      .filter(s => s.problem && s.verdict)
       .map(s => ({
         studentId: student._id,
         problemId: `${s.problem.contestId}/${s.problem.index}`,

@@ -28,7 +28,7 @@ app.use('/api/students', studentRoutes);
 app.use('/api/profile', profileRoutes);
  
 // Cron jobs
-require('./cron/cronJob'); // loads & runs cron tasks
+require('./cron/cronJob');
 
 // Default route
 app.get('/', (req, res) => {

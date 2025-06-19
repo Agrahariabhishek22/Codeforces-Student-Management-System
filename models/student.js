@@ -21,11 +21,9 @@ const studentSchema=new mongoose.Schema({
     },
     currentRating:{
         type:String,
-        // required:true
     },
     maxRating:{
         type:String,
-        // required:true
     },
     lastSynced: {
     type: Date,
@@ -41,7 +39,7 @@ const studentSchema=new mongoose.Schema({
   }
 },
  {
-  timestamps: true // adds createdAt and updatedAt
+  timestamps: true
 }
 );
 

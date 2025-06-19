@@ -49,20 +49,8 @@ const getAllStudents = async (req, res) => {
 };
 
 
-// // 3. Get one student by ID
-// const getStudentById = async (req, res) => {
-//   try {
-//     const student = await Student.findById(req.params.id);
-//     if (!student) return res.status(404).json({ success: false, message: 'Student not found' });
 
-//     res.status(200).json({ success: true, student });
-//   } catch (err) {
-//     res.status(500).json({ success: false, message: err.message });
-//   }
-// };
-
-
-// 4. Update student details
+// 3. Update student details
 const updateStudent = async (req, res) => {
   try {
     const updated = await Student.findByIdAndUpdate(req.params.id, req.body, { new: true });
@@ -75,7 +63,7 @@ const updateStudent = async (req, res) => {
 };
 
 
-// 5. Delete student
+// 4. Delete student
 const deleteStudent = async (req, res) => {
   try {
     const deleted = await Student.findByIdAndDelete(req.params.id);
@@ -88,7 +76,7 @@ const deleteStudent = async (req, res) => {
 };
 
 
-// 6. Update CF handle & trigger real-time sync
+// 5. Update CF handle & trigger real-time sync
 const updateCFHandle = async (req, res) => {
   try {
     // console.log("inside updateCFHandle controller");
@@ -116,7 +104,6 @@ const updateCFHandle = async (req, res) => {
 module.exports = {
   createStudent,
   getAllStudents,
-  // getStudentById,
   updateStudent,
   deleteStudent,
   updateCFHandle
